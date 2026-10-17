@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101a25"><title>Derelict Salvagers</title>
+</head>
+<body>
+<main id="app">
+<header><div><small>DERELICT SALVAGERS · INCREMENT 1</small><h1>Salvage Expedition</h1></div><button id="reset" type="button">New expedition</button></header>
+<section class="stats" aria-label="Resources"><div><small>OXYGEN</small><strong id="oxygen">—</strong></div><div><small>TOOL</small><strong id="tool">—</strong></div><div><small>CARGO</small><strong id="cargo">—</strong></div></section>
+<section class="map-wrap" aria-label="Derelict map"><div id="map"></div></section>
+<section class="return" aria-live="polite"><span id="return">Known return: —</span><span id="reserve">Reserve: —</span></section>
+<section class="panel"><h2 id="context-title">Expedition</h2><p id="context">Explore, salvage, and return to the docking point.</p><div class="actions" id="actions"></div><p class="message" id="message" aria-live="polite"></p></section>
+<section class="help"><details><summary>How to play</summary><p>Tap adjacent tiles to move, or tap a known reachable tile to travel along discovered corridors. Travel stops at new discoveries. Select an adjacent bulkhead or terminal, or stand on salvage, to see actions. Moving costs 1 oxygen. Inspecting is free. Return to the blue docking tile to extract. Your progress saves automatically.</p></details></section>
+</main>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
