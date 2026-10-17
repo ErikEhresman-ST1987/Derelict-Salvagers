@@ -1,0 +1,11 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {createRun,move,cut,terminal,collect,extract,travel,shortestPath,returnCost,validateRun,cargoUsed} from "../src/engine.js";
+test("generated runs are valid and seeded",()=>{for(let seed=1;seed<=50;seed++){const s=createRun(seed);assert.equal(validateRun(s),true);assert.equal(s.door.y,seed%2?4:3);assert.ok(shortestPath(s,s.dock,s.terminal,false));}});
+test("legal movement costs oxygen; illegal movement is free",()=>{const s=createRun();assert.equal(move(s,2,4),true);assert.equal(s.oxygen,39);assert.equal(move(s,8,8),false);assert.equal(s.oxygen,39);});
+test("terminal opens door with no tool charge",()=>{const s=createRun();move(s,2,4);move(s,3,4);assert.equal(terminal(s),true);assert.equal(s.door.open,true);assert.equal(s.tool,6);});
+test("cut opens bulkhead and charges resources",()=>{const s=createRun();for(const x of [2,3,4])move(s,x,4);assert.equal(cut(s),true);assert.equal(s.tool,4);assert.equal(s.oxygen,35);});
+test("cargo respects capacity",()=>{const s=createRun();s.x=7;s.y=4;assert.equal(collect(s,"coupling"),true);assert.equal(cargoUsed(s),3);s.x=8;s.y=6;assert.equal(collect(s,"scrap-b"),true);assert.equal(cargoUsed(s),5);s.x=3;s.y=6;assert.equal(collect(s,"scrap-a"),false);});
+test("extraction only at dock",()=>{const s=createRun();move(s,2,4);assert.equal(extract(s),false);move(s,1,4);assert.equal(extract(s),true);assert.equal(s.phase,"extracted");});
+test("known route exists to docking after first move",()=>{const s=createRun();move(s,2,4);assert.equal(returnCost(s),1);});
+test("serialized state restores and validates",()=>{const s=createRun(5);move(s,2,4);const restored=JSON.parse(JSON.stringify(s));assert.equal(validateRun(restored),true);assert.deepEqual(restored,s);assert.equal(validateRun({...restored,version:99}),false);});
