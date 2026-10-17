@@ -3,7 +3,7 @@
 A compact, turn-based science-fiction salvage roguelike. Explore abandoned spacecraft, recover equipment and critical repair components, and decide when to leave safely rather than risk one more room.
 
 ## Project status
-**Planning approved; Increment 1 implementation beginning.** The [Goal Box v1.0](GOAL-BOX.md) and [Project Foundation v0.2](FOUNDATION.md) are approved. [Increment 1 contract](INCREMENT-1.md) is approved for implementation. A working game, deployment, offline support, and real-device testing must not be assumed until separately verified.
+**Planning approved; Increment 1 source committed, not yet verified or deployed.** The [Goal Box v1.0](GOAL-BOX.md) and [Project Foundation v0.2](FOUNDATION.md) are approved. [Increment 1 contract](INCREMENT-1.md) is approved for implementation. A working game, deployment, offline support, and real-device testing must not be assumed until separately verified.
 
 ## Intended game
 - One operator on a visible, discoverable grid with turn-based oxygen costs.
@@ -38,3 +38,8 @@ Goal Box → Foundation → Smallest Meaningful Implementation → Verify → Re
 Default branch: `main`. Initial baseline: [ae3b9f5](https://github.com/ErikEhresman-ST1987/Derelict-Salvagers/commit/ae3b9f538661cfa02b542bdf6def0cd4509fb3a7).
 
 No account, backend, subscription, combat system, or real-time timer is planned.
+
+## Running the current development build
+Requires Node.js 22 and npm. Run `npm install`, `npm test`, and `npm run dev`; then open the local address printed by Vite. `npm run build` creates static files in `dist/`. The exact pinned PixiJS and Vite packages still require successful install/build verification. No hosted URL is yet confirmed.
+
+**Current limitations:** The source contains a small first-expedition rules engine, PixiJS tile renderer, basic HTML controls, autosave, and initial rules tests. It is not a verified complete Increment 1. Browser integration, offline caching, deployment, and real-device playtests remain outstanding. The full game's repair/upgrade/rescue systems are not included.
